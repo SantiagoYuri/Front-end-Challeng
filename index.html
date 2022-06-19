@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;800&display=swap" rel="stylesheet">
+
+    <title>Document</title>
+    <style>
+        body {
+            background-color:hsl(218, 23%, 16%);
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+        }
+      .container{
+        background-color:hsl(217, 19%, 24%);
+        border-radius: 8px;
+        width: 500px;
+        position: relative;
+
+      }
+      .header{
+          font-size: 12px;
+          text-transform: uppercase;
+          color:hsl(150, 100%, 66%);
+          letter-spacing: 4px;
+          display: flex;
+          padding-top: 20px;
+          align-items: center;
+          justify-content: center;
+      }
+      .header > h1{
+
+        font-size: 12px;
+      }
+
+      .header > span{
+          margin-left: 10px;
+      }
+      .header > span > span{
+          margin: 0;
+      }
+      .advice{
+          margin: 0;
+          padding: 20px;
+          font-size: 24px;
+          color: white;
+          text-align: center;
+          position: relative;
+      }
+      .img{
+          display:flex ;
+          justify-content: center;
+          padding-left: 20px;
+          padding-right: 20px;
+          padding-bottom: 20px;
+          margin-bottom: 40px;
+      }
+      .button{
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          background-color:hsl(150, 100%, 66%);
+          border: none;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor:pointer;
+          position: absolute;
+          right: calc(50% - 25px);
+          bottom: -25px;
+
+
+      }
+
+      .button > img {
+          width: 20px;
+         height: 20px;
+
+      }
+     
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Advice</h1>
+            <span>
+                #<span>117</span>
+            </span>
+        </div>
+        <div>
+            <p class="advice"></p>
+            
+        </div>
+    <div class="img">
+        <img src="./images/pattern-divider-desktop.svg"/>
+    </div>
+        <div>
+            <button class="button">
+                <img src="./images/icon-dice.svg" />
+            </button>
+        </div>
+    </div>
+
+    
+   
+</body>
+    <script>
+        const advice = document.querySelector(".advice");
+        
+        fetch("https://api.adviceslip.com/advice").then(async res => {
+            const test = await res.json()
+            
+            console.log(test.slip.advice);
+            
+            const mssg = test.slip.advice;
+
+            advice.innerHTML = '"' + mssg + '"' 
+
+
+        })
+
+        const button = document.querySelector("button");
+        button.addEventListener("click" , function (){
+            fetch("https://api.adviceslip.com/advice").then(async res => {
+            const test = await res.json()
+            
+            console.log(test.slip.advice);
+            
+            const mssg = test.slip.advice;
+
+            advice.innerHTML = '"' + mssg + '"' 
+
+
+        })
+        })
+
+    </script>
+</html>
